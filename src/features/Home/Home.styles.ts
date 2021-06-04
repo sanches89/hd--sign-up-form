@@ -9,9 +9,8 @@ export const Container = styled.div`
   height: 100vh;
   width: 100vw;
 
-  background-color: ${p => p.theme.colors.background};
-
-  overflow: hidden;
+  background-image: url('/imgs/assets/texture.webp');
+  background-repeat: repeat;
 `
 
 export const Title = styled.h1`
