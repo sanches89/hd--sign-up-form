@@ -1,0 +1,13 @@
+import React from 'react'
+
+import * as S from './{{name}}.styles'
+
+export interface {{name}}Props {
+  children: React.ReactNode
+}
+
+export function {{name}}(props: {{name}}Props): React.ReactElement {
+  const {children} = props
+
+  return <S.Container>{children}</S.Container>
+}
