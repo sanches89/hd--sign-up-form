@@ -20,6 +20,6 @@ describe('Home', () => {
 
   it('should work', async () => {
     await page.goto('http://localhost:3000/')
-    expect(await page.title()).toBe('CNA | TypeScript')
+    expect(await page.title()).toBe('Hero Digital | Form')
   })
 })
