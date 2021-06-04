@@ -3,7 +3,7 @@ import React from 'react'
 import {AppProps} from 'next/app'
 import Head from 'next/head'
 
-import {ThemeProvider} from 'styled-components'
+import {ThemeProvider, createGlobalStyle} from 'styled-components'
 
 import {theme} from '@/styles/theme'
 
@@ -11,6 +11,12 @@ import {theme} from '@/styles/theme'
  * @see https://dev.to/hankchizljaw/a-modern-css-reset-6p3
  */
 import 'modern-css-reset/dist/reset.css'
+
+const GlobalStyle = createGlobalStyle`
+  html, body {
+    font-family: 'Open Sans', sans-serif;
+  }
+`
 
 const viewport = [
   'minimum-scale=1',
@@ -56,9 +62,17 @@ function MyApp({Component, pageProps}: AppProps): React.ReactElement {
         <meta name="msapplication-TileColor" content="#f2f2f2" />
         <meta name="theme-color" content="#f2f2f2" />
 
+        {/* Google Fonts */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+
         <title>Hero Digital | Form</title>
       </Head>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
