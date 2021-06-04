@@ -1,9 +1,25 @@
 import React from 'react'
 
-import {storiesOf} from '@storybook/react'
+import {Meta} from '@storybook/react'
 
-import {Button} from './Button'
+import {Button, ButtonProps} from './Button'
 
-storiesOf('Button', module).add('default', () => {
-  return <Button>Hello Button!!</Button>
-})
+export default {
+  title: 'Button',
+  component: Button,
+  argTypes: {
+    children: {control: 'text'},
+    variant: {
+      options: ['primary', 'secondary'],
+    },
+  },
+} as Meta
+
+export const Default = (args: ButtonProps): React.ReactElement => (
+  <Button {...args} />
+)
+
+Default.args = {
+  children: 'Hello Word',
+  variant: 'primary',
+}

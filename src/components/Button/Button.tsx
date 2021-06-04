@@ -2,12 +2,13 @@ import React from 'react'
 
 import * as S from './Button.styles'
 
-interface ButtonProps {
+export interface ButtonProps {
   children: React.ReactNode
+  variant?: 'primary' | 'secondary'
 }
 
 export function Button(props: ButtonProps): React.ReactElement {
-  const {children} = props
+  const {variant = 'primary', children} = props
 
-  return <S.Container>{children}</S.Container>
+  return <S.Container variant={variant}>{children}</S.Container>
 }
