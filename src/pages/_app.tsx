@@ -3,20 +3,15 @@ import React from 'react'
 import {AppProps} from 'next/app'
 import Head from 'next/head'
 
-import {ThemeProvider, createGlobalStyle} from 'styled-components'
+import {ThemeProvider} from 'styled-components'
 
+import {GlobalStyle} from '@/styles/globalStyle'
 import {theme} from '@/styles/theme'
 
 /**
  * @see https://dev.to/hankchizljaw/a-modern-css-reset-6p3
  */
 import 'modern-css-reset/dist/reset.css'
-
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    font-family: 'Open Sans', sans-serif;
-  }
-`
 
 const viewport = [
   'minimum-scale=1',
