@@ -4,7 +4,7 @@ export const theme = {
     secondary: '#ffffff',
     input: {
       border: '#d0e8e6',
-      active: {
+      focus: {
         border: '#a1d2ce',
       },
       disabled: {
