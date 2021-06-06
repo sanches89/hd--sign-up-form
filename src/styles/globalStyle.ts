@@ -4,6 +4,8 @@ export const GlobalStyle = createGlobalStyle`
   ${({theme}) => css`
     * {
       letter-spacing: 2px;
+
+      box-sizing: border-box;
     }
 
     html,

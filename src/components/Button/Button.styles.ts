@@ -4,7 +4,7 @@ import {ButtonProps} from './Button'
 
 export const Container = styled.button<ButtonProps>`
   ${({theme, variant}) => css`
-    padding: ${theme.spacing[1]}px ${theme.spacing[4]}px;
+    padding: ${theme.spacing[2]}px ${theme.spacing[4]}px;
 
     border: none;
     border-radius: 9999px;

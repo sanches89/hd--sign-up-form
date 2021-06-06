@@ -2,7 +2,8 @@ import React from 'react'
 
 import * as S from './Button.styles'
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   variant?: 'primary' | 'secondary'
 }

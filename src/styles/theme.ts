@@ -1,5 +1,7 @@
 export const theme = {
   colors: {
+    white: '#ffffff',
+    black: '#000000',
     primary: '#803093',
     secondary: '#ffffff',
     input: {
@@ -39,4 +41,5 @@ export const theme = {
   spacing: [4, 8, 16, 32, 64],
   fontSize: [16, 24, 32, 42, 64],
   fontWeight: [400, 700],
+  breakpoints: [768, 1024],
 }
