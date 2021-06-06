@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {Button} from '@/components/Button'
+import {Checkbox} from '@/components/Checkbox'
 import {InputText} from '@/components/InputText'
 
 import * as S from './Home.styles'
@@ -20,9 +21,9 @@ export function Home(): React.ReactElement {
             <InputText label="EU Resident" required />
           </S.Fieldset>
           <S.Fieldset>
-            <InputText label="Advances" />
-            <InputText label="Alerts" />
-            <InputText label="Other communications" />
+            <Checkbox label="Advances" />
+            <Checkbox label="Alerts" />
+            <Checkbox label="Other communications" />
           </S.Fieldset>
           <S.Actions>
             <Button type="submit" variant="secondary">

@@ -3,8 +3,9 @@ import React from 'react'
 import * as S from './InputText.styles'
 
 export interface InputTextProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label: string
+  type?: 'text' | 'email'
   error?: boolean
   errorMessage?: string
 }

@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   min-height: 100vh;
 
-  background-image: url('/imgs/assets/texture.webp');
+  background-image: url('/imgs/texture.webp');
   background-repeat: repeat;
 `
 
@@ -72,8 +72,7 @@ export const Actions = styled.div`
 
     align-items: center;
 
-    padding-top: ${theme.spacing[4]}px;
-    padding-bottom: ${theme.spacing[3]}px;
+    padding: ${theme.spacing[3]}px 0;
 
     * + * {
       margin-top: ${theme.spacing[3]}px;
