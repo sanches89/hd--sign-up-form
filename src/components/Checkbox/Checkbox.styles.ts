@@ -27,7 +27,7 @@ export const CheckMark = styled.span`
     background-color: ${theme.colors.white};
 
     transition: border-color 250ms ease-in-out,
-      background-color 250ms ease-in-out;
+      background-color 250ms ease-in-out, box-shadow 250ms ease-in-out;
 
     &:disabled {
       border-color: ${theme.colors.input.disabled.border};
@@ -58,6 +58,8 @@ export const Container = styled.label`
       border: none;
 
       background-color: ${theme.colors.primary};
+
+      box-shadow: none;
     }
 
     & input ~ ${CheckMark}::after {
