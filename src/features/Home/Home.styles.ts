@@ -45,7 +45,7 @@ export const Form = styled.form`
   `}
 `
 
-export const Fieldset = styled.fieldset`
+export const Fieldset = styled.section`
   ${({theme}) => css`
     display: grid;
 
