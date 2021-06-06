@@ -50,7 +50,7 @@ export const Container = styled.label`
 
     cursor: pointer;
 
-    &:hover ${CheckMark} {
+    &:hover ${CheckMark}, & input:focus ~ ${CheckMark} {
       border-color: ${theme.colors.input.focus.border};
     }
 

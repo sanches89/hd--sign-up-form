@@ -3,8 +3,14 @@ import React from 'react'
 import {Button} from '@/components/Button'
 import {Checkbox} from '@/components/Checkbox'
 import {InputText} from '@/components/InputText'
+import {Select, Option} from '@/components/Select'
 
 import * as S from './Home.styles'
+
+const selectOptions: Option[] = [
+  {value: 'yes', description: 'Yes'},
+  {value: 'no', description: 'No'},
+]
 
 export function Home(): React.ReactElement {
   return (
@@ -18,7 +24,7 @@ export function Home(): React.ReactElement {
             <InputText label="Last name" required />
             <InputText label="Email address" type="email" required />
             <InputText label="Organization" />
-            <InputText label="EU Resident" required />
+            <Select label="EU Resident" options={selectOptions} required />
           </S.Fieldset>
           <S.Fieldset>
             <Checkbox label="Advances" />
