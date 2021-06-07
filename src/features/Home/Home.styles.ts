@@ -108,3 +108,19 @@ export const Actions = styled.div`
     `}
   `}
 `
+
+export const SuccessMessage = styled.h1`
+  ${({theme}) => css`
+    color: ${theme.colors.text.success};
+    font-size: ${theme.fontSize[3]}px;
+    text-align: center;
+  `}
+`
+
+export const ErrorMessage = styled.h1`
+  ${({theme}) => css`
+    color: ${theme.colors.text.error};
+    font-size: ${theme.fontSize[3]}px;
+    text-align: center;
+  `}
+`

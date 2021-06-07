@@ -30,6 +30,7 @@ export function isFormField(x: unknown): x is FormFields {
       'advances',
       'alerts',
       'other',
+      'error',
     ].includes(x)
   )
 }
@@ -67,6 +68,11 @@ function formDataToSignUpData(formData: FormData): SignUpData {
   return data
 }
 
+export interface ServerResponse {
+  status: 'success' | 'error'
+  message: string
+}
+
 const selectOptions: Option[] = [
   {value: 'yes', description: 'Yes'},
   {value: 'no', description: 'No'},
@@ -78,6 +84,8 @@ export function Home(): React.ReactElement {
   const [hasError, setHasError] = React.useState(false)
   const [error, setError] = React.useState<FormError>({})
   const [touched, setTouched] = React.useState(false)
+
+  const [serverResponse, setServerResponse] = React.useState<ServerResponse>()
 
   const handleSubmit = React.useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -94,6 +102,14 @@ export function Home(): React.ReactElement {
         setError(result.error)
         return
       }
+
+      fetch('/api/sign-up', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data),
+      })
+        .then(res => res.json())
+        .then(setServerResponse)
     },
     [],
   )
@@ -114,89 +130,104 @@ export function Home(): React.ReactElement {
       return
     }
 
+    setHasError(false)
     setError({})
   }, [touched])
 
   return (
     <S.Container>
       <S.Content>
-        <S.Title>Sign up for email updates</S.Title>
-        <S.Notes>* Indicates required fields</S.Notes>
+        {!serverResponse && (
+          <>
+            <S.Title>Sign up for email updates</S.Title>
+            <S.Notes>* Indicates required fields</S.Notes>
 
-        <S.Form ref={formRef} onSubmit={handleSubmit}>
-          <S.Fieldset>
-            <InputText
-              label="First name"
-              name="firstName"
-              required
-              error={!!error.firstName}
-              errorMessage={error.firstName}
-              onBlur={handleRunTimeFormValidation}
-            />
-            <InputText
-              label="Last name"
-              name="lastName"
-              required
-              error={!!error.lastName}
-              errorMessage={error.lastName}
-              onBlur={handleRunTimeFormValidation}
-            />
-            <InputText
-              label="Email address"
-              name="email"
-              required
-              error={!!error.email}
-              errorMessage={error.email}
-              onBlur={handleRunTimeFormValidation}
-            />
-            <InputText label="Organization" name="organization" />
-            <Select
-              label="EU Resident"
-              options={selectOptions}
-              name="euResident"
-              required
-              error={!!error.euResident}
-              errorMessage={error.euResident}
-              onBlur={handleRunTimeFormValidation}
-            />
-          </S.Fieldset>
+            <S.Form ref={formRef} onSubmit={handleSubmit}>
+              <S.Fieldset>
+                <InputText
+                  label="First name"
+                  name="firstName"
+                  required
+                  error={!!error.firstName}
+                  errorMessage={error.firstName}
+                  onBlur={handleRunTimeFormValidation}
+                />
+                <InputText
+                  label="Last name"
+                  name="lastName"
+                  required
+                  error={!!error.lastName}
+                  errorMessage={error.lastName}
+                  onBlur={handleRunTimeFormValidation}
+                />
+                <InputText
+                  label="Email address"
+                  name="email"
+                  required
+                  error={!!error.email}
+                  errorMessage={error.email}
+                  onBlur={handleRunTimeFormValidation}
+                />
+                <InputText label="Organization" name="organization" />
+                <Select
+                  label="EU Resident"
+                  options={selectOptions}
+                  name="euResident"
+                  required
+                  error={!!error.euResident}
+                  errorMessage={error.euResident}
+                  onBlur={handleRunTimeFormValidation}
+                />
+              </S.Fieldset>
 
-          {error.oneOf && <S.FormError>{error.oneOf}</S.FormError>}
+              {error.oneOf && <S.FormError>{error.oneOf}</S.FormError>}
 
-          <S.Fieldset>
-            <Checkbox
-              label="Advances"
-              name="advances"
-              error={!!error.oneOf}
-              onChange={handleRunTimeFormValidation}
-            />
-            <Checkbox
-              label="Alerts"
-              name="alerts"
-              error={!!error.oneOf}
-              onChange={handleRunTimeFormValidation}
-            />
-            <Checkbox
-              label="Other communications"
-              name="other"
-              error={!!error.oneOf}
-              onChange={handleRunTimeFormValidation}
-            />
-          </S.Fieldset>
+              <S.Fieldset>
+                <Checkbox
+                  label="Advances"
+                  name="advances"
+                  error={!!error.oneOf}
+                  onChange={handleRunTimeFormValidation}
+                />
+                <Checkbox
+                  label="Alerts"
+                  name="alerts"
+                  error={!!error.oneOf}
+                  onChange={handleRunTimeFormValidation}
+                />
+                <Checkbox
+                  label="Other communications"
+                  name="other"
+                  error={!!error.oneOf}
+                  onChange={handleRunTimeFormValidation}
+                />
+              </S.Fieldset>
 
-          <S.Actions>
-            <Button
-              type="submit"
-              variant="secondary"
-              disabled={touched && hasError}
-            >
-              Submit
-            </Button>
-            <Button type="reset" onClick={handleRunTimeFormValidation}>
-              Reset
-            </Button>
-          </S.Actions>
-        </S.Form>
+              <S.Fieldset>
+                <Checkbox label="Error(Just for test purpose)" name="error" />
+              </S.Fieldset>
+
+              <S.Actions>
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  disabled={touched && hasError}
+                >
+                  Submit
+                </Button>
+                <Button type="reset" onClick={handleRunTimeFormValidation}>
+                  Reset
+                </Button>
+              </S.Actions>
+            </S.Form>
+          </>
+        )}
+        {serverResponse && serverResponse.status === 'success' && (
+          <S.SuccessMessage>{serverResponse.message}</S.SuccessMessage>
+        )}
+        {serverResponse && serverResponse.status === 'error' && (
+          <S.ErrorMessage>{serverResponse.message}</S.ErrorMessage>
+        )}
       </S.Content>
     </S.Container>
   )

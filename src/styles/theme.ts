@@ -40,6 +40,7 @@ export const theme = {
       primary: '#404040',
       secondary: '#ffffff',
       error: '#ee4266',
+      success: '#258F78',
     },
     shadow: '0px 3px 5px rgba(0, 0, 0, 0.5)',
   },
