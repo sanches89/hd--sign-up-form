@@ -1,5 +1,7 @@
 import React from 'react'
 
+import axios from 'axios'
+
 import {Button} from '@/components/Button'
 import {Checkbox} from '@/components/Checkbox'
 import {InputText} from '@/components/InputText'
@@ -103,13 +105,10 @@ export function Home(): React.ReactElement {
         return
       }
 
-      fetch('/api/sign-up', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
-      })
-        .then(res => res.json())
-        .then(setServerResponse)
+      axios
+        .post<ServerResponse>('/api/sign-up', data)
+        .then(res => setServerResponse(res.data))
+        .catch(res => setServerResponse(res.response.data))
     },
     [],
   )
