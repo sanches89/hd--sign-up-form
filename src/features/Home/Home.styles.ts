@@ -22,6 +22,10 @@ export const Content = styled.main`
     margin: auto;
 
     padding: ${theme.spacing[2]}px;
+
+    & > ${FormError}:last-of-type {
+      margin-bottom: ${theme.spacing[3]}px;
+    }
   `}
 `
 
@@ -34,6 +38,17 @@ export const Title = styled.h1`
 export const Notes = styled.p`
   ${({theme}) => css`
     margin: ${theme.spacing[3]}px 0;
+  `}
+`
+
+export const FormError = styled.p`
+  ${({theme}) => css`
+    margin: ${theme.spacing[1]}px 0;
+
+    font-weight: ${theme.fontWeight[1]};
+    font-style: italic;
+
+    color: ${theme.colors.text.error};
   `}
 `
 

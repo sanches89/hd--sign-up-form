@@ -6,7 +6,7 @@ import {Select} from './Select'
 
 describe('Select', () => {
   it('renders without crashing', () => {
-    render(<Select>Hello world!!!</Select>)
+    render(<Select label="Test" options={[]} />)
     expect(screen.getByText(/Hello world!!!/)).toBeInTheDocument()
   })
 })

@@ -35,6 +35,11 @@ export const CheckMark = styled.span`
 
       cursor: not-allowed;
     }
+
+    &.error {
+      border-color: ${theme.colors.input.error.border};
+      background-color: ${theme.colors.input.error.background};
+    }
   `}
 `
 
@@ -65,6 +70,8 @@ export const Container = styled.label`
     & input ~ ${CheckMark}::after {
       content: url('/assets/check.svg');
 
+      display: none;
+
       position: absolute;
       top: 0;
       right: 0;
@@ -76,6 +83,10 @@ export const Container = styled.label`
       color: ${theme.colors.white};
 
       transform: scale(0.7);
+    }
+
+    & input:checked ~ ${CheckMark}::after {
+      display: unset;
     }
   `}
 `

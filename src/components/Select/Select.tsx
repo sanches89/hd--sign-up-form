@@ -12,17 +12,32 @@ export interface Option {
 export interface SelectProps {
   label: string
   options: Option[]
+  name?: string
+  error?: boolean
   required?: boolean
 }
 
 export function Select(props: SelectProps): React.ReactElement {
-  const {label, options, required = false} = props
+  const {label, options, name, error = false, required = false} = props
 
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
   const [open, setOpen] = React.useState(false)
   const [optionSelected, setOptionSelected] =
     React.useState<Option | undefined>()
+
+  React.useEffect(() => {
+    // Easier way handle form reset
+    const id = setInterval(() => {
+      if (inputRef.current?.value === '') {
+        setOptionSelected(undefined)
+      }
+    }, 250)
+
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
 
   const handleInputHidden = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,9 +64,9 @@ export function Select(props: SelectProps): React.ReactElement {
         {label}
         {required ? '*' : ''}
       </S.Label>
-      <S.InputHidden ref={inputRef} onChange={handleInputHidden} />
+      <S.InputHidden ref={inputRef} name={name} onChange={handleInputHidden} />
       <S.SelectWrapper>
-        <S.Select onClick={handleSelectClick}>
+        <S.Select className={error ? 'error' : ''} onClick={handleSelectClick}>
           <S.SelectDescription>
             {optionSelected?.description ?? '- Select one -'}
           </S.SelectDescription>

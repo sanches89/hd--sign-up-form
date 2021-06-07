@@ -9,7 +9,11 @@ export interface ButtonProps
 }
 
 export function Button(props: ButtonProps): React.ReactElement {
-  const {variant = 'primary', children} = props
+  const {variant = 'primary', children, ...rest} = props
 
-  return <S.Container variant={variant}>{children}</S.Container>
+  return (
+    <S.Container variant={variant} {...rest}>
+      {children}
+    </S.Container>
+  )
 }
