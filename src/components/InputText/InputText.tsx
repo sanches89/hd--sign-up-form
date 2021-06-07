@@ -23,12 +23,14 @@ export function InputText(props: InputTextProps): React.ReactElement {
   return (
     <S.Container>
       <S.Label>
-        {label}
-        {required ? '*' : ''}
+        <S.LabelDescription>
+          {label}
+          {required ? '*' : ''}
+        </S.LabelDescription>
+        {showErrorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
       </S.Label>
       <S.InputWrapper>
         <S.Input className={error ? 'error' : undefined} {...rest} />
-        {showErrorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
       </S.InputWrapper>
     </S.Container>
   )

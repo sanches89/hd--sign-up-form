@@ -9,11 +9,25 @@ export const InputHidden = styled.input`
 
 export const Label = styled.span`
   ${({theme}) => css`
-    display: block;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
 
     margin-bottom: ${theme.spacing[1]}px;
 
     font-weight: ${theme.fontWeight[0]};
+
+    text-transform: uppercase;
+  `}
+`
+
+export const LabelDescription = styled.span``
+
+export const ErrorMessage = styled.span`
+  ${({theme}) => css`
+    color: ${theme.colors.text.error};
+    font-weight: ${theme.fontWeight[1]};
   `}
 `
 

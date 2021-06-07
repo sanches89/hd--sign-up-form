@@ -22,10 +22,6 @@ export const Content = styled.main`
     margin: auto;
 
     padding: ${theme.spacing[2]}px;
-
-    & > ${FormError}:last-of-type {
-      margin-bottom: ${theme.spacing[3]}px;
-    }
   `}
 `
 
@@ -43,7 +39,8 @@ export const Notes = styled.p`
 
 export const FormError = styled.p`
   ${({theme}) => css`
-    margin: ${theme.spacing[1]}px 0;
+    margin-top: ${theme.spacing[3]}px;
+    margin-bottom: ${theme.spacing[1]}px;
 
     font-weight: ${theme.fontWeight[1]};
     font-style: italic;

@@ -6,13 +6,25 @@ export const Container = styled.label`
 
 export const Label = styled.span`
   ${({theme}) => css`
-    display: block;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
 
     margin-bottom: ${theme.spacing[1]}px;
 
     font-weight: ${theme.fontWeight[0]};
 
     text-transform: uppercase;
+  `}
+`
+
+export const LabelDescription = styled.span``
+
+export const ErrorMessage = styled.span`
+  ${({theme}) => css`
+    color: ${theme.colors.text.error};
+    font-weight: ${theme.fontWeight[1]};
   `}
 `
 
@@ -52,19 +64,5 @@ export const Input = styled.input`
       border-color: ${theme.colors.input.error.border};
       background-color: ${theme.colors.input.error.background};
     }
-  `}
-`
-
-export const ErrorMessage = styled.div`
-  ${({theme}) => css`
-    border: ${theme.spacing[0]}px solid ${theme.colors.input.error.border};
-    border-top: none;
-
-    padding: ${theme.spacing[1]}px ${theme.spacing[2]}px;
-
-    background-color: ${theme.colors.input.error.background};
-
-    color: ${theme.colors.text.error};
-    font-weight: ${theme.fontWeight[1]};
   `}
 `

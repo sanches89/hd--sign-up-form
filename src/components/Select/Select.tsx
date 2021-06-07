@@ -14,11 +14,19 @@ export interface SelectProps {
   options: Option[]
   name?: string
   error?: boolean
+  errorMessage?: string
   required?: boolean
 }
 
 export function Select(props: SelectProps): React.ReactElement {
-  const {label, options, name, error = false, required = false} = props
+  const {
+    label,
+    options,
+    name,
+    error = false,
+    errorMessage = '',
+    required = false,
+  } = props
 
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
@@ -58,11 +66,16 @@ export function Select(props: SelectProps): React.ReactElement {
     setOptionSelected(option)
   }, [])
 
+  const showErrorMessage = error && errorMessage
+
   return (
     <S.Container>
       <S.Label>
-        {label}
-        {required ? '*' : ''}
+        <S.LabelDescription>
+          {label}
+          {required ? '*' : ''}
+        </S.LabelDescription>
+        {showErrorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
       </S.Label>
       <S.InputHidden ref={inputRef} name={name} onChange={handleInputHidden} />
       <S.SelectWrapper>
