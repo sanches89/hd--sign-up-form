@@ -36,6 +36,11 @@ export const SelectWrapper = styled.div`
     position: relative;
 
     box-shadow: ${theme.colors.shadow};
+
+    & > ${Select}.error ~ ${Options} > ${Option} {
+      border-color: ${theme.colors.input.error.border};
+      background-color: ${theme.colors.input.error.background};
+    }
   `}
 `
 

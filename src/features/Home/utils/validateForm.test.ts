@@ -1,9 +1,9 @@
-import {SignUpFormData} from '../Home'
+import {SignUpData} from '../Home'
 import {validateForm} from './validateForm'
 
 describe('Home > utils > validateForm', () => {
   it('validateForm should return valid', () => {
-    const data: SignUpFormData = {
+    const data: SignUpData = {
       firstName: 'Ivan',
       lastName: 'Sanches',
       email: 'sanches.ic.89@gmail.com',
@@ -36,8 +36,8 @@ describe('Home > utils > validateForm', () => {
     expect(result.error.oneOf).toMatch(/at least one/i)
   })
 
-  it('validateForm should return invalide mail', () => {
-    const data: SignUpFormData = {
+  it('validateForm should return invalid email', () => {
+    const data: SignUpData = {
       firstName: 'Ivan',
       lastName: 'Sanches',
       email: 'wrong email format',

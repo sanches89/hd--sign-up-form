@@ -33,5 +33,11 @@ export const Container = styled.button<ButtonProps>`
     &:active {
       box-shadow: ${theme.colors.button.active.shadow};
     }
+
+    &:disabled {
+      background-color: ${theme.colors.button.disabled.background};
+      color: ${theme.colors.button.disabled.color};
+      box-shadow: ${theme.colors.button.disabled.shadow};
+    }
   `}
 `

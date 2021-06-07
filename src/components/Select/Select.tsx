@@ -16,6 +16,7 @@ export interface SelectProps {
   error?: boolean
   errorMessage?: string
   required?: boolean
+  onBlur?: () => void
 }
 
 export function Select(props: SelectProps): React.ReactElement {
@@ -26,6 +27,7 @@ export function Select(props: SelectProps): React.ReactElement {
     error = false,
     errorMessage = '',
     required = false,
+    onBlur = () => void 0,
   } = props
 
   const inputRef = React.useRef<HTMLInputElement | null>(null)
@@ -56,15 +58,20 @@ export function Select(props: SelectProps): React.ReactElement {
   )
 
   const handleSelectClick = React.useCallback(() => setOpen(s => !s), [])
-  const handleOptionClick = React.useCallback((option: Option | undefined) => {
-    if (!inputRef.current) {
-      return
-    }
+  const handleOptionClick = React.useCallback(
+    (option: Option | undefined) => {
+      if (!inputRef.current) {
+        return
+      }
 
-    setOpen(false)
-    inputRef.current.value = option?.value ?? ''
-    setOptionSelected(option)
-  }, [])
+      setOpen(false)
+      inputRef.current.value = option?.value ?? ''
+      setOptionSelected(option)
+
+      onBlur()
+    },
+    [onBlur],
+  )
 
   const showErrorMessage = error && errorMessage
 

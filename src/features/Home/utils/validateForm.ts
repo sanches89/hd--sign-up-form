@@ -1,4 +1,4 @@
-import {FormError, FormFields, isFormErrorField, SignUpFormData} from '../Home'
+import {FormError, FormFields, isFormErrorField, SignUpData} from '../Home'
 
 export type ValidateFormResult =
   | {valid: true}
@@ -7,7 +7,7 @@ export type ValidateFormResult =
       error: FormError
     }
 
-export function validateForm(data: SignUpFormData): ValidateFormResult {
+export function validateForm(data: SignUpData): ValidateFormResult {
   let hasError = false
   const newError: FormError = {}
 

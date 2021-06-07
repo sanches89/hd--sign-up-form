@@ -29,6 +29,11 @@ export const theme = {
       active: {
         shadow: '0px 0px 2px rgba(0, 0, 0, 0.5)',
       },
+      disabled: {
+        background: '#989898',
+        color: '#f2f2f2',
+        shadow: '0px 0px 2px rgba(0, 0, 0, 0.5)',
+      },
     },
     scrollbar: '#3f8794',
     text: {
